@@ -59,6 +59,7 @@
             }
 
             var lines = text.split('\n');
+            var currentY = y;
 
             for (var i = 0; i < lines.length; i++) {
                 var line = lines[i];
@@ -71,19 +72,18 @@
                         if (context.measureText(testLine).width <= fitWidth) {
                             currentLine = testLine;
                         } else {
-                            context.fillText(currentLine, x, y);
+                            context.fillText(currentLine, x, currentY);
                             currentLine = words[j];
-                            y += lineHeight;
+                            currentY += lineHeight;
                         }
                     }
-                    context.fillText(currentLine, x, y);
+                    context.fillText(currentLine, x, currentY);
                 } else {
-                    context.fillText(line, x, y);
+                    context.fillText(line, x, currentY);
                 }
-                y += lineHeight;
+                currentY += lineHeight;
             }
         }
     </script>
 </body>
 </html>
-
