@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas Texteditor</title>
+    <style>
+        #editorCanvas {
+            border: 1px solid #000;
+            font-family: "Courier New", monospace; /* Retro-Schriftart */
+            background-color: #000; /* Retro-Hintergrundfarbe */
+            color: #00FF00; /* Retro-Textfarbe */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="editorCanvas" width="560" height="384"></canvas>
+
+    <script>
+        const canvas = document.getElementById("editorCanvas");
+        const context = canvas.getContext("2d");
+
+        // Text-Eigenschaften
+        let fontSize = 16;
+        let fontFamily = "Courier New, monospace";
+        let textColor = "#00FF00"; // Retro-Textfarbe
+
+        // Initialisiere den Textinhalt
+        let textContent = "";
+
+        // Setze die Text-Eigenschaften
+        context.font = `${fontSize}px ${fontFamily}`;
+        context.fillStyle = textColor;
+
+        // Funktion zum Text zeichnen
+        function drawText() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.fillText(textContent, 10, 30);
+        }
+
+        // Event-Handler für Tastatureingaben
+        document.addEventListener("keydown", function(event) {
+            if (event.key.length === 1) {
+                textContent += event.key;
+                drawText();
+            } else if (event.key === "Backspace") {
+                textContent = textContent.slice(0, -1);
+                drawText();
+            } else if (event.key === "Enter") {
+                textContent += "\n";
+                drawText();
+            }
+        });
+    </script>
+</body>
+</html>
