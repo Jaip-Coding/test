@@ -35,7 +35,7 @@
         // Funktion zum Text zeichnen
         function drawText() {
             context.clearRect(0, 0, canvas.width, canvas.height);
-            printAt(context, textContent, 5, linePx, 20, 560);
+            printAt(context, textContent, 5, 20, 20, 560);
         }
 
         // Event-Handler für Tastatureingaben
@@ -47,7 +47,7 @@
                 textContent = textContent.slice(0, -1);
                 drawText();
             } else if (event.key === "Enter") {
-                linePx += 20
+                textContent += "\n";
                 drawText();
             }
         });
@@ -72,7 +72,12 @@
                     return;
                 }
             }
-            context.fillText( text, x, y );
+            var lines = text.split('\n');
+
+            for (var i = 0; i < lines.length; i++)
+                c.fillText(lines[i], x, y + (i * lineheight));
+            
+            context.fillText(text, x, y);
         }
     </script>
 </body>
