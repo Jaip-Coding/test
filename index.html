@@ -33,7 +33,7 @@
         // Funktion zum Text zeichnen
         function drawText() {
             context.clearRect(0, 0, canvas.width, canvas.height);
-            context.fillText(textContent, 10, 30);
+            printAt(textContent, 10, 30, 10, 560);
         }
 
         // Event-Handler für Tastatureingaben
@@ -49,6 +49,29 @@
                 drawText();
             }
         });
+
+        function printAt( context , text, x, y, lineHeight, fitWidth) {
+            fitWidth = fitWidth || 0;
+            
+            if (fitWidth <= 0)
+            {
+                 context.fillText( text, x, y );
+                return;
+            }
+            
+            for (var idx = 1; idx <= text.length; idx++)
+            {
+                var str = text.substr(0, idx);
+                console.log(str, context.measureText(str).width, fitWidth);
+                if (context.measureText(str).width > fitWidth)
+                {
+                    context.fillText( text.substr(0, idx-1), x, y );
+                    printAt(context, text.substr(idx-1), x, y + lineHeight, lineHeight,  fitWidth);
+                    return;
+                }
+            }
+            context.fillText( text, x, y );
+        }
     </script>
 </body>
 </html>
