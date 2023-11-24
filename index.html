@@ -58,32 +58,25 @@
                 return;
             }
 
-            var lines = text.split('\n');
-            var currentY = y;
-
-            for (var i = 0; i < lines.length; i++) {
-                var line = lines[i];
-                if (context.measureText(line).width > fitWidth) {
-                    var words = line.split(' ');
-                    var currentLine = words[0];
-
-                    for (var j = 1; j < words.length; j++) {
-                        var testLine = currentLine + ' ' + words[j];
-                        if (context.measureText(testLine).width <= fitWidth) {
-                            currentLine = testLine;
-                        } else {
-                            context.fillText(currentLine, x, currentY);
-                            currentLine = words[j];
-                            currentY += lineHeight;
-                        }
-                    }
-                    context.fillText(currentLine, x, currentY);
+            var words = text.split(' ');
+            var currentLine = '';
+            
+            for (var i = 0; i < words.length; i++) {
+                var testLine = currentLine + ' ' + words[i];
+                var testWidth = context.measureText(testLine).width;
+                
+                if (testWidth <= fitWidth) {
+                    currentLine = testLine;
                 } else {
-                    context.fillText(line, x, currentY);
+                    context.fillText(currentLine, x, y);
+                    currentLine = words[i];
+                    y += lineHeight;
                 }
-                currentY += lineHeight;
             }
+            
+            context.fillText(currentLine, x, y);
         }
     </script>
 </body>
 </html>
+
