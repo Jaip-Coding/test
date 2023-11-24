@@ -18,6 +18,8 @@
         const canvas = document.getElementById("editorCanvas");
         const context = canvas.getContext("2d");
 
+        let linePx = 20
+
         // Text-Eigenschaften
         let fontSize = 23;
         let fontFamily = "Courier New, monospace";
@@ -33,7 +35,7 @@
         // Funktion zum Text zeichnen
         function drawText() {
             context.clearRect(0, 0, canvas.width, canvas.height);
-            printAt(context, textContent, 5,20, 20, 560);
+            printAt(context, textContent, 5, linePx, 20, 560);
         }
 
         // Event-Handler für Tastatureingaben
@@ -45,7 +47,7 @@
                 textContent = textContent.slice(0, -1);
                 drawText();
             } else if (event.key === "Enter") {
-                textContent += "\n";
+                linePx += 20
                 drawText();
             }
         });
