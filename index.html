@@ -137,5 +137,13 @@
 
     <!-- Weitere Inhalte und Abschnitte hier einfügen -->
 
+    <script>
+        // JavaScript-Code zum Ein-/Ausblenden des Menüs
+        document.getElementById('menu-toggle').addEventListener('change', function() {
+            var nav = document.querySelector('nav');
+            nav.style.display = this.checked ? 'flex' : 'none';
+        });
+    </script>
+
 </body>
 </html>
