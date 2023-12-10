@@ -1,90 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <title>Canvas Texteditor</title>
-    <style>
-        #editorCanvas {
-            border: 1px solid #000;
-            font-family: "Courier New", monospace; /* Retro-Schriftart */
-            background-color: #011A04; /* Retro-Hintergrundfarbe */
-            color: #00FF00; /* Retro-Textfarbe */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deine Webseite</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: #333;
+      padding: 10px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header img {
+      height: 40px; /* Passe die Höhe nach Bedarf an */
+    }
+
+    main {
+      width: 100%;
+      text-align: center;
+    }
+
+    main img {
+      width: 100%;
+      height: auto;
+    }
+
+    .featured-box {
+      display: flex;
+      flex-direction: column;
+      margin: 20px;
+    }
+
+    footer {
+      padding: 20px;
+      background-color: #333;
+      color: white;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      header nav {
+        display: none;
+      }
+
+      header img {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <canvas id="editorCanvas" width="560" height="384"></canvas>
 
-    <script>
-        const canvas = document.getElementById("editorCanvas");
-        const context = canvas.getContext("2d");
+  <header>
+    <div>
+      <img src="dein-logo.png" alt="Logo">
+      <span>Dein Name</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Menüpunkt 1</a></li>
+        <li><a href="#">Menüpunkt 2</a></li>
+        <li><a href="#">Menüpunkt 3</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        // Text-Eigenschaften
-        let fontSize = 23;
-        let fontFamily = "Courier New, monospace";
-        let textColor = "#00FF00"; // Retro-Textfarbe
+  <main>
+    <img src="dein-foto.jpg" alt="Foto">
+    
+    <div class="featured-box">
+      <h2>Box 1</h2>
+      <p>Kurzer Text zur Box 1. <a href="#">Link</a></p>
+    </div>
 
-        // Initialisiere den Textinhalt
-        let textContent = "";
+    <div class="featured-box">
+      <h2>Box 2</h2>
+      <p>Kurzer Text zur Box 2. <a href="#">Link</a></p>
+    </div>
 
-        // Setze die Text-Eigenschaften
-        context.font = `${fontSize}px ${fontFamily}`;
-        context.fillStyle = textColor;
+    <div class="featured-box">
+      <h2>Box 3</h2>
+      <p>Kurzer Text zur Box 3. <a href="#">Link</a></p>
+    </div>
+  </main>
 
-        // Funktion zum Text zeichnen
-        function drawText() {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            printAt(context, textContent, 5, 20, 20, 560);
-        }
+  <footer>
+    &copy; 2023 Dein Unternehmen
+  </footer>
 
-        // Event-Handler für Tastatureingaben
-        document.addEventListener("keydown", function(event) {
-            if (event.key.length === 1 && event.key !== "Enter") {
-                textContent += event.key;
-                drawText();
-            } else if (event.key === "Backspace") {
-                textContent = textContent.slice(0, -1);
-                drawText();
-            } else if (event.key === "Enter") {
-                textContent += "\n";
-                drawText();
-            }
-        });
-
-        function printAt(context, text, x, y, lineHeight, fitWidth) {
-            fitWidth = fitWidth || 0;
-
-            if (fitWidth <= 0) {
-                context.fillText(text, x, y);
-                return;
-            }
-
-            var lines = text.split('\n');
-
-            for (var i = 0; i < lines.length; i++) {
-                var line = lines[i];
-                if (context.measureText(line).width > fitWidth) {
-                    var words = line.split(' ');
-                    var currentLine = words[0];
-
-                    for (var j = 1; j < words.length; j++) {
-                        var testLine = currentLine + ' ' + words[j];
-                        if (context.measureText(testLine).width <= fitWidth) {
-                            currentLine = testLine;
-                        } else {
-                            context.fillText(currentLine, x, y);
-                            currentLine = words[j];
-                            y += lineHeight;
-                        }
-                    }
-                    context.fillText(currentLine, x, y);
-                } else {
-                    context.fillText(line, x, y);
-                }
-                y += lineHeight;
-            }
-        }
-    </script>
 </body>
 </html>
-
-
