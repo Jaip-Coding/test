@@ -82,6 +82,19 @@
             background-color: white;
             text-align: center;
         }
+        
+        .background-image {
+          position: relative;
+          text-align: center;
+          color: white;
+        }
+        
+        .centered-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
         @media only screen and (max-width: 768px) {
             header {
@@ -128,7 +141,10 @@
         </nav>
     </header>
 
-    <center><img src="https://jaip-coding.github.io/Code1.png" style="width: 100%"></center>
+    <div class="background-image">
+        <center><img src="https://jaip-coding.github.io/Code1.png" style="width: 100%"></center>
+        <div class="centered-text"><h1>Future programming</h1></div>
+    </div>
 
     <div style="display: flex; justify-content: center; flex-wrap: wrap;">
         <div class="feature-box">
