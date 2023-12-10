@@ -56,7 +56,7 @@
         section {
             width: 100%;
             height: 100vh;
-            background: url('https://jaip-coding.github.io/Code1.png') center/cover no-repeat;
+            background: url('background.jpg') center/cover no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -75,7 +75,11 @@
         @media only screen and (max-width: 768px) {
             header {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+            }
+
+            header div {
+                margin-bottom: 10px;
             }
 
             nav {
@@ -101,7 +105,7 @@
 <body>
     <header>
         <div>
-            <img src="https://jaip-coding.github.io/logo_transparent.png" alt="Logo">
+            <img src="logo.png" alt="Logo">
             <span>Webseitenname</span>
         </div>
         <input type="checkbox" id="menu-toggle">
@@ -144,6 +148,5 @@
             nav.style.display = this.checked ? 'flex' : 'none';
         });
     </script>
-
 </body>
 </html>
