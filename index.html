@@ -1,107 +1,141 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deine Webseite</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Header Webseite</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    header {
-      position: sticky;
-      top: 0;
-      background-color: #333;
-      padding: 10px;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    header img {
-      height: 40px; /* Passe die Höhe nach Bedarf an */
-    }
+        header img {
+            max-width: 100px;
+            height: auto;
+        }
 
-    main {
-      width: 100%;
-      text-align: center;
-    }
+        nav {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 10px;
+            background-color: #333;
+            padding: 10px;
+        }
 
-    main img {
-      width: 100%;
-      height: auto;
-    }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+        }
 
-    .featured-box {
-      display: flex;
-      flex-direction: column;
-      margin: 20px;
-    }
+        #menu-toggle {
+            display: none;
+            cursor: pointer;
+            color: white;
+        }
 
-    footer {
-      padding: 20px;
-      background-color: #333;
-      color: white;
-      text-align: center;
-    }
+        #menu-toggle:checked + nav {
+            display: flex;
+        }
 
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
+        section {
+            width: 100%;
+            height: 100vh;
+            background: url('background.jpg') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
 
-      header nav {
-        display: none;
-      }
+        .feature-box {
+            width: 30%;
+            padding: 20px;
+            margin: 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
 
-      header img {
-        margin-bottom: 10px;
-      }
-    }
-  </style>
+        @media only screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+                top: 40px;
+                left: 0;
+            }
+
+            #menu-toggle {
+                display: block;
+            }
+
+            #menu-toggle + nav {
+                display: none;
+            }
+
+            .feature-box {
+                width: 80%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div>
+            <img src="logo.png" alt="Logo">
+            <span>Webseitenname</span>
+        </div>
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle">&#9776; Menü</label>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Über uns</a>
+            <a href="#">Kontakt</a>
+        </nav>
+    </header>
 
-  <header>
-    <div>
-      <img src="dein-logo.png" alt="Logo">
-      <span>Dein Name</span>
+    <section>
+        <h1>Willkommen auf unserer Webseite</h1>
+    </section>
+
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+        <div class="feature-box">
+            <h2>Feature 1</h2>
+            <p>Kurzer Text über Feature 1.</p>
+            <a href="#">Mehr erfahren</a>
+        </div>
+        <div class="feature-box">
+            <h2>Feature 2</h2>
+            <p>Kurzer Text über Feature 2.</p>
+            <a href="#">Mehr erfahren</a>
+        </div>
+        <div class="feature-box">
+            <h2>Feature 3</h2>
+            <p>Kurzer Text über Feature 3.</p>
+            <a href="#">Mehr erfahren</a>
+        </div>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#">Menüpunkt 1</a></li>
-        <li><a href="#">Menüpunkt 2</a></li>
-        <li><a href="#">Menüpunkt 3</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <img src="dein-foto.jpg" alt="Foto">
-    
-    <div class="featured-box">
-      <h2>Box 1</h2>
-      <p>Kurzer Text zur Box 1. <a href="#">Link</a></p>
-    </div>
-
-    <div class="featured-box">
-      <h2>Box 2</h2>
-      <p>Kurzer Text zur Box 2. <a href="#">Link</a></p>
-    </div>
-
-    <div class="featured-box">
-      <h2>Box 3</h2>
-      <p>Kurzer Text zur Box 3. <a href="#">Link</a></p>
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2023 Dein Unternehmen
-  </footer>
+    <!-- Weitere Inhalte und Abschnitte hier einfügen -->
 
 </body>
 </html>
