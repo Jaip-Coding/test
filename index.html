@@ -26,6 +26,12 @@
             height: auto;
         }
 
+        .logo {
+            display: flex;
+            align-items: start;
+            justify-content: start
+        }
+        
         nav {
             display: none;
             flex-direction: column;
@@ -93,9 +99,13 @@
 </head>
 <body>
     <header>
-        <div>
-            <img src="logo.png" alt="Logo">
-            <span>Webseitenname</span>
+        <div class="logo">
+            <div class="logo-image">
+                <img src="logo_transparent.png">
+            </div>
+            <div class="logo-text">
+                <h1>Jaip Coding</h1>
+            </div>
         </div>
         <input type="checkbox" id="menu-toggle">
         <label for="menu-toggle">&#9776; Menü</label>
